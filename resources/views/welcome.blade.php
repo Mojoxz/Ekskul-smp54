@@ -1,259 +1,245 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMP 54 Surabaya - Sistem Ekstrakurikuler</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .gradient-purple-yellow {
-            background: linear-gradient(135deg, #8B5CF6 0%, #F59E0B 100%);
-        }
-        .gradient-yellow-purple {
-            background: linear-gradient(135deg, #F59E0B 0%, #8B5CF6 100%);
-        }
-        .carousel-item {
-            opacity: 0;
-            transform: translateX(100%);
-            transition: all 0.5s ease-in-out;
-        }
-        .carousel-item.active {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        .floating {
-            animation: floating 3s ease-in-out infinite;
-        }
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-    </style>
-</head>
-<body class="bg-gradient-to-br from-purple-50 via-yellow-50 to-purple-100 min-h-screen">
-    <!-- Header -->
-    <nav class="gradient-purple-yellow text-white p-4 shadow-lg">
-        <div class="container mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                    <svg class="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
-                    </svg>
-                </div>
-                <h1 class="text-xl font-bold">SMP 54 Surabaya</h1>
-            </div>
-        </div>
-    </nav>
+@extends('layouts.app')
 
-    <!-- Hero Section with Carousel -->
-    <div class="container mx-auto px-4 py-12">
-        <div class="text-center mb-12">
-            <h1 class="text-5xl font-bold text-transparent bg-clip-text gradient-purple-yellow mb-4">
-                Sistem Ekstrakurikuler Digital
+@section('title', 'Beranda - SMP 54 Surabaya')
+
+@section('content')
+<!-- Hero Section -->
+<section class="relative overflow-hidden">
+    <div class="absolute inset-0 z-0">
+        <div class="w-full h-full gradient-purple-yellow opacity-90"></div>
+    </div>
+    
+    <!-- Background Image Container -->
+    <div class="absolute inset-0 z-0">
+        <img src="{{ asset('images/hero-bg.jpg') }}" alt="SMP 54 Surabaya" class="w-full h-full object-cover opacity-20">
+    </div>
+    
+    <div class="relative z-10 container mx-auto px-4 py-20">
+        <div class="text-center text-white">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                Sistem Ekstrakurikuler
+                <span class="text-yellow-300">Digital</span>
             </h1>
-            <p class="text-xl text-gray-700 mb-8">
-                Platform modern untuk mengelola dan memantau kegiatan ekstrakurikuler dengan mudah
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto opacity-90">
+                Platform modern untuk mengelola dan memantau kegiatan ekstrakurikuler dengan mudah, efisien, dan terintegrasi
             </p>
-        </div>
-
-        <!-- Carousel Container -->
-        <div class="relative max-w-6xl mx-auto mb-12">
-            <div class="overflow-hidden">
-                <!-- Carousel Item 1 -->
-                <div class="carousel-item active flex items-center">
-                    <div class="w-full md:w-1/2 p-8">
-                        <div class="gradient-purple-yellow text-white p-8 rounded-2xl shadow-2xl">
-                            <div class="flex items-center mb-6">
-                                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mr-4">
-                                    <svg class="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
-                                    </svg>
-                                </div>
-                                <h3 class="text-2xl font-bold">Untuk Administrator</h3>
-                            </div>
-                            <ul class="space-y-3 text-lg">
-                                <li class="flex items-center"><span class="w-2 h-2 bg-yellow-300 rounded-full mr-3"></span>Kelola data murid dan ekstrakurikuler</li>
-                                <li class="flex items-center"><span class="w-2 h-2 bg-yellow-300 rounded-full mr-3"></span>Monitor presensi real-time</li>
-                                <li class="flex items-center"><span class="w-2 h-2 bg-yellow-300 rounded-full mr-3"></span>Buat laporan komprehensif</li>
-                                <li class="flex items-center"><span class="w-2 h-2 bg-yellow-300 rounded-full mr-3"></span>Kelola berita dan pengumuman</li>
-                            </ul>
-                            <div class="mt-8">
-                                <a href="/admin/login" class="bg-white text-purple-600 font-bold py-3 px-8 rounded-full hover:bg-yellow-100 transition duration-300 shadow-lg">
-                                    Login Admin
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hidden md:block w-1/2 p-8">
-                        <div class="floating">
-                            <svg class="w-80 h-80 text-purple-300" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" clip-rule="evenodd"/>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Carousel Item 2 -->
-                <div class="carousel-item absolute top-0 left-0 w-full flex items-center">
-                    <div class="hidden md:block w-1/2 p-8">
-                        <div class="floating">
-                            <svg class="w-80 h-80 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="w-full md:w-1/2 p-8">
-                        <div class="gradient-yellow-purple text-white p-8 rounded-2xl shadow-2xl">
-                            <div class="flex items-center mb-6">
-                                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mr-4">
-                                    <svg class="w-6 h-6 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
-                                    </svg>
-                                </div>
-                                <h3 class="text-2xl font-bold">Untuk Siswa</h3>
-                            </div>
-                            <ul class="space-y-3 text-lg">
-                                <li class="flex items-center"><span class="w-2 h-2 bg-purple-300 rounded-full mr-3"></span>Presensi mudah dan cepat</li>
-                                <li class="flex items-center"><span class="w-2 h-2 bg-purple-300 rounded-full mr-3"></span>Lihat statistik kehadiran</li>
-                                <li class="flex items-center"><span class="w-2 h-2 bg-purple-300 rounded-full mr-3"></span>Akses berita terkini</li>
-                                <li class="flex items-center"><span class="w-2 h-2 bg-purple-300 rounded-full mr-3"></span>Dashboard personal</li>
-                            </ul>
-                            <div class="mt-8">
-                                <a href="/murid/login" class="bg-white text-yellow-600 font-bold py-3 px-8 rounded-full hover:bg-purple-100 transition duration-300 shadow-lg">
-                                    Login Siswa
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Carousel Item 3 -->
-                <div class="carousel-item absolute top-0 left-0 w-full flex items-center">
-                    <div class="w-full md:w-1/2 p-8">
-                        <div class="bg-white p-8 rounded-2xl shadow-2xl border-4 border-purple-200">
-                            <div class="flex items-center mb-6">
-                                <div class="w-12 h-12 gradient-purple-yellow rounded-full flex items-center justify-center mr-4">
-                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd"/>
-                                    </svg>
-                                </div>
-                                <h3 class="text-2xl font-bold text-gray-800">Fitur Lengkap</h3>
-                            </div>
-                            <ul class="space-y-3 text-lg text-gray-700">
-                                <li class="flex items-center"><span class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>Sistem presensi digital</li>
-                                <li class="flex items-center"><span class="w-2 h-2 bg-yellow-500 rounded-full mr-3"></span>Laporan otomatis</li>
-                                <li class="flex items-center"><span class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>Notifikasi real-time</li>
-                                <li class="flex items-center"><span class="w-2 h-2 bg-yellow-500 rounded-full mr-3"></span>Interface user-friendly</li>
-                            </ul>
-                            <div class="mt-8 grid grid-cols-2 gap-4">
-                                <a href="/admin/login" class="gradient-purple-yellow text-white font-bold py-2 px-4 rounded-full text-center hover:shadow-lg transition duration-300">
-                                    Admin
-                                </a>
-                                <a href="/murid/login" class="gradient-yellow-purple text-white font-bold py-2 px-4 rounded-full text-center hover:shadow-lg transition duration-300">
-                                    Siswa
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hidden md:block w-1/2 p-8">
-                        <div class="floating">
-                            <svg class="w-80 h-80 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Carousel Navigation -->
-            <div class="flex justify-center mt-8 space-x-2">
-                <button class="carousel-dot w-3 h-3 bg-purple-500 rounded-full transition-all duration-300" data-slide="0"></button>
-                <button class="carousel-dot w-3 h-3 bg-gray-300 rounded-full transition-all duration-300" data-slide="1"></button>
-                <button class="carousel-dot w-3 h-3 bg-gray-300 rounded-full transition-all duration-300" data-slide="2"></button>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#features" class="bg-white text-purple-600 font-bold py-4 px-8 rounded-full hover:bg-yellow-100 transition duration-300 shadow-lg">
+                    <i class="fas fa-play mr-2"></i> Jelajahi Fitur
+                </a>
+                <a href="{{ route('berita') }}" class="bg-yellow-500 text-white font-bold py-4 px-8 rounded-full hover:bg-yellow-600 transition duration-300 shadow-lg">
+                    <i class="fas fa-newspaper mr-2"></i> Lihat Berita
+                </a>
             </div>
         </div>
+    </div>
+    
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+        <i class="fas fa-chevron-down text-2xl"></i>
+    </div>
+</section>
 
-        <!-- Features Section -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-purple-500 hover:shadow-xl transition duration-300">
+<!-- Features Section -->
+<section id="features" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">Fitur Unggulan</h2>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">Sistem yang dirancang khusus untuk memudahkan pengelolaan ekstrakurikuler sekolah</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-purple-500 hover:shadow-xl hover:scale-105 transition duration-300">
                 <div class="w-16 h-16 gradient-purple-yellow rounded-full flex items-center justify-center mb-6 mx-auto">
-                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
+                    <i class="fas fa-check-circle text-white text-2xl"></i>
                 </div>
                 <h3 class="font-bold text-xl mb-4 text-center text-gray-800">Presensi Digital</h3>
                 <p class="text-gray-600 text-center">Sistem presensi modern yang memungkinkan pencatatan kehadiran secara digital dengan akurasi tinggi dan kemudahan akses.</p>
             </div>
 
-            <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-yellow-500 hover:shadow-xl transition duration-300">
+            <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-yellow-500 hover:shadow-xl hover:scale-105 transition duration-300">
                 <div class="w-16 h-16 gradient-yellow-purple rounded-full flex items-center justify-center mb-6 mx-auto">
-                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                    </svg>
+                    <i class="fas fa-chart-bar text-white text-2xl"></i>
                 </div>
                 <h3 class="font-bold text-xl mb-4 text-center text-gray-800">Laporan Otomatis</h3>
                 <p class="text-gray-600 text-center">Dapatkan laporan kehadiran dan statistik secara otomatis dengan visual yang menarik dan mudah dipahami.</p>
             </div>
 
-            <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-purple-500 hover:shadow-xl transition duration-300">
+            <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-purple-500 hover:shadow-xl hover:scale-105 transition duration-300">
                 <div class="w-16 h-16 gradient-purple-yellow rounded-full flex items-center justify-center mb-6 mx-auto">
-                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"/>
-                    </svg>
+                    <i class="fas fa-users text-white text-2xl"></i>
                 </div>
                 <h3 class="font-bold text-xl mb-4 text-center text-gray-800">User Friendly</h3>
                 <p class="text-gray-600 text-center">Interface yang intuitif dan mudah digunakan untuk semua kalangan, baik admin maupun siswa.</p>
             </div>
         </div>
+    </div>
+</section>
 
-        <!-- CTA Section -->
-        <div class="gradient-purple-yellow rounded-2xl p-12 text-center text-white shadow-2xl">
-            <h2 class="text-3xl font-bold mb-4">Siap Memulai?</h2>
-            <p class="text-xl mb-8 opacity-90">Bergabunglah dengan sistem ekstrakurikuler digital yang modern dan efisien</p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="/admin/login" class="bg-white text-purple-600 font-bold py-4 px-8 rounded-full hover:bg-yellow-100 transition duration-300 shadow-lg">
-                    Masuk Sebagai Admin
-                </a>
-                <a href="/murid/login" class="bg-yellow-500 text-white font-bold py-4 px-8 rounded-full hover:bg-yellow-600 transition duration-300 shadow-lg">
-                    Masuk Sebagai Siswa
-                </a>
+<!-- Statistics Section -->
+<section class="py-20 gradient-purple-yellow text-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold mb-4">Pencapaian Kami</h2>
+            <p class="text-xl opacity-90">Data statistik sistem ekstrakurikuler SMP 54 Surabaya</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="text-center">
+                <div class="text-4xl md:text-5xl font-bold mb-2">{{ $ekskuls->count() }}+</div>
+                <div class="text-lg opacity-90">Ekstrakurikuler</div>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl md:text-5xl font-bold mb-2">500+</div>
+                <div class="text-lg opacity-90">Siswa Aktif</div>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl md:text-5xl font-bold mb-2">95%</div>
+                <div class="text-lg opacity-90">Tingkat Kehadiran</div>
+            </div>
+            <div class="text-center">
+                <div class="text-4xl md:text-5xl font-bold mb-2">{{ $beritas->count() }}+</div>
+                <div class="text-lg opacity-90">Berita Terkini</div>
             </div>
         </div>
     </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white text-center py-8 mt-12">
-        <p>&copy; 2024 SMP 54 Surabaya. All rights reserved.</p>
-        <p class="text-gray-400 text-sm mt-2">Sistem Ekstrakurikuler Digital - Memajukan Pendidikan Indonesia</p>
-    </footer>
+<!-- Ekstrakurikuler Section -->
+<section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">Ekstrakurikuler Kami</h2>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">Berbagai pilihan ekstrakurikuler yang dapat mengembangkan bakat dan minat siswa</p>
+        </div>
 
-    <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.carousel-item');
-        const dots = document.querySelectorAll('.carousel-dot');
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            @foreach($ekskuls->take(8) as $ekskul)
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl hover:scale-105 transition duration-300">
+                <div class="h-32 gradient-purple-yellow flex items-center justify-center">
+                    <i class="fas fa-star text-white text-3xl"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-bold text-lg mb-2 text-gray-800">{{ $ekskul->nama }}</h3>
+                    <p class="text-gray-600 text-sm mb-3">{{ Str::limit($ekskul->deskripsi, 80) }}</p>
+                    <div class="flex items-center text-sm text-gray-500">
+                        <i class="fas fa-clock mr-1"></i>
+                        {{ $ekskul->jam_mulai->format('H:i') }} - {{ $ekskul->jam_selesai->format('H:i') }}
+                    </div>
+                    <div class="flex items-center text-sm text-gray-500 mt-1">
+                        <i class="fas fa-calendar mr-1"></i>
+                        {{ $ekskul->hari }}
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
 
-        function showSlide(n) {
-            slides[currentSlide].classList.remove('active');
-            dots[currentSlide].classList.remove('bg-purple-500');
-            dots[currentSlide].classList.add('bg-gray-300');
+        <div class="text-center mt-12">
+            <a href="{{ route('ekstrakurikuler') }}" class="gradient-purple-yellow text-white font-bold py-3 px-8 rounded-full hover:shadow-lg transition duration-300">
+                <i class="fas fa-arrow-right mr-2"></i> Lihat Semua Ekstrakurikuler
+            </a>
+        </div>
+    </div>
+</section>
 
-            currentSlide = n;
+<!-- News Section -->
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">Berita Terkini</h2>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">Informasi terbaru seputar kegiatan ekstrakurikuler dan prestasi siswa</p>
+        </div>
 
-            slides[currentSlide].classList.add('active');
-            dots[currentSlide].classList.remove('bg-gray-300');
-            dots[currentSlide].classList.add('bg-purple-500');
-        }
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            @foreach($beritas->take(6) as $berita)
+            <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl hover:scale-105 transition duration-300">
+                <div class="h-48 overflow-hidden">
+                    @if($berita->foto)
+                        <img src="{{ asset('storage/' . $berita->foto) }}" alt="{{ $berita->judul }}" class="w-full h-full object-cover">
+                    @else
+                        <div class="h-full gradient-purple-yellow flex items-center justify-center">
+                            <i class="fas fa-newspaper text-white text-4xl"></i>
+                        </div>
+                    @endif
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center text-sm text-gray-500 mb-2">
+                        <i class="fas fa-calendar mr-1"></i>
+                        {{ $berita->created_at->format('d M Y') }}
+                        <span class="mx-2">•</span>
+                        <i class="fas fa-user mr-1"></i>
+                        {{ $berita->user->name }}
+                    </div>
+                    <h3 class="font-bold text-lg mb-3 text-gray-800 line-clamp-2">{{ $berita->judul }}</h3>
+                    <p class="text-gray-600 mb-4 line-clamp-3">{{ Str::limit(strip_tags($berita->konten), 120) }}</p>
+                    <a href="{{ route('berita.detail', $berita->id) }}" class="text-purple-600 hover:text-purple-800 font-semibold transition duration-300">
+                        <i class="fas fa-arrow-right mr-1"></i> Baca Selengkapnya
+                    </a>
+                </div>
+            </article>
+            @endforeach
+        </div>
 
-        // Auto-advance carousel
-        setInterval(() => {
-            showSlide((currentSlide + 1) % slides.length);
-        }, 5000);
+        <div class="text-center mt-12">
+            <a href="{{ route('berita') }}" class="gradient-purple-yellow text-white font-bold py-3 px-8 rounded-full hover:shadow-lg transition duration-300">
+                <i class="fas fa-newspaper mr-2"></i> Lihat Semua Berita
+            </a>
+        </div>
+    </div>
+</section>
 
-        // Dot navigation
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => showSlide(index));
-        });
-    </script>
-</body>
-</html>
+<!-- CTA Section -->
+<section class="py-20 gradient-purple-yellow text-white">
+    <div class="container mx-auto px-4 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold mb-6">Bergabunglah dengan Sistem Kami</h2>
+            <p class="text-xl mb-8 opacity-90">Nikmati kemudahan mengelola dan memantau kegiatan ekstrakurikuler dengan teknologi terdepan</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+                <div class="bg-white bg-opacity-20 backdrop-blur-lg rounded-xl p-6 hover:bg-opacity-30 transition duration-300">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user-shield text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Untuk Administrator</h3>
+                    <p class="mb-4 opacity-90">Kelola semua aspek ekstrakurikuler dengan mudah dan efisien</p>
+                    <a href="{{ route('admin.login') }}" class="bg-white text-purple-600 font-bold py-2 px-6 rounded-full hover:bg-yellow-100 transition duration-300 inline-block">
+                        Login Admin
+                    </a>
+                </div>
+
+                <div class="bg-white bg-opacity-20 backdrop-blur-lg rounded-xl p-6 hover:bg-opacity-30 transition duration-300">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user-graduate text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Untuk Siswa</h3>
+                    <p class="mb-4 opacity-90">Akses presensi dan informasi ekstrakurikuler dengan praktis</p>
+                    <a href="{{ route('murid.login') }}" class="bg-white text-purple-600 font-bold py-2 px-6 rounded-full hover:bg-yellow-100 transition duration-300 inline-block">
+                        Login Siswa
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+</style>
+@endsection

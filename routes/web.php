@@ -9,6 +9,11 @@ use App\Http\Controllers\MuridController;
 
 // Public routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/tentang', [HomeController::class, 'tentang'])->name('tentang');
+Route::get('/berita', [HomeController::class, 'berita'])->name('berita');
+Route::get('/berita/{id}', [HomeController::class, 'beritaDetail'])->name('berita.detail');
+Route::get('/ekstrakurikuler', [HomeController::class, 'ekstrakurikuler'])->name('ekstrakurikuler');
+Route::get('/kontak', [HomeController::class, 'kontak'])->name('kontak');
 
 // Auth routes
 Route::get('/admin/login', [AuthController::class, 'showAdminLogin'])->name('admin.login');
