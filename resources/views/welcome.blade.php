@@ -11,13 +11,13 @@
     
     <!-- Background Image Container -->
     <div class="absolute inset-0 z-0">
-        <img src="{{ asset('images/hero-bg.jpg') }}" alt="SMP 54 Surabaya" class="w-full h-full object-cover opacity-20">
+        <img src="{{ asset('images/hero-bg.jpg') }}" alt="" class="w-full h-full object-cover opacity-20">
     </div>
     
     <div class="relative z-10 container mx-auto px-4 py-20">
         <div class="text-center text-white">
             <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                Sistem Ekstrakurikuler
+                Sistem Presensi Ekstrakurikuler
                 <span class="text-yellow-300">Digital</span>
             </h1>
             <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto opacity-90">
