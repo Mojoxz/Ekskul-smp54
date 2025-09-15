@@ -7,6 +7,7 @@
     <title>@yield('title', 'Admin Panel - SMP 54 Surabaya')</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ asset('logo.png') }}">
     <style>
         .sidebar-transition {
             transition: transform 0.3s ease-in-out;

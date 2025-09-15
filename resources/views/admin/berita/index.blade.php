@@ -1,5 +1,5 @@
 <!-- resources/views/admin/berita/index.blade.php -->
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Kelola Berita')
 
@@ -43,8 +43,19 @@
             @endif
 
             <div class="ml-4 flex flex-col space-y-2">
-                <button class="text-blue-600 hover:text-blue-900 text-sm">Edit</button>
-                <button class="text-red-600 hover:text-red-900 text-sm">Hapus</button>
+                <!-- Fixed Edit Button -->
+                <a href="{{ route('admin.berita.edit', $berita->id) }}" class="text-blue-600 hover:text-blue-900 text-sm font-medium">
+                    Edit
+                </a>
+                
+                <!-- Fixed Delete Button with Modal Trigger -->
+                <form method="POST" action="{{ route('admin.berita.destroy', $berita->id) }}" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus berita ini?')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="text-red-600 hover:text-red-900 text-sm font-medium">
+                        Hapus
+                    </button>
+                </form>
             </div>
         </div>
     </div>
@@ -63,4 +74,35 @@
     </a>
 </div>
 @endif
+
+<!-- Success/Error Messages -->
+@if(session('success'))
+<div class="fixed top-4 right-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded shadow-lg z-50" role="alert">
+    <span class="block sm:inline">{{ session('success') }}</span>
+    <span class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="this.parentElement.remove();">
+        <span class="cursor-pointer">&times;</span>
+    </span>
+</div>
+@endif
+
+@if(session('error'))
+<div class="fixed top-4 right-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded shadow-lg z-50" role="alert">
+    <span class="block sm:inline">{{ session('error') }}</span>
+    <span class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="this.parentElement.remove();">
+        <span class="cursor-pointer">&times;</span>
+    </span>
+</div>
+@endif
+
+<script>
+// Auto-hide success/error messages after 5 seconds
+setTimeout(function() {
+    const alerts = document.querySelectorAll('[role="alert"]');
+    alerts.forEach(alert => {
+        alert.style.transition = 'opacity 0.5s';
+        alert.style.opacity = '0';
+        setTimeout(() => alert.remove(), 500);
+    });
+}, 5000);
+</script>
 @endsection

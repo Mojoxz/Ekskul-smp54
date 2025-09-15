@@ -1,5 +1,5 @@
 <!-- resources/views/admin/murid/index.blade.php -->
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Kelola Murid')
 

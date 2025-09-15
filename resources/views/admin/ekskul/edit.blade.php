@@ -1,5 +1,5 @@
 <!-- resources/views/admin/ekskul/edit.blade.php -->
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Edit Ekstrakurikuler')
 

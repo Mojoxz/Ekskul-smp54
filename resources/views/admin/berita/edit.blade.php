@@ -1,5 +1,5 @@
 <!-- resources/views/admin/berita/edit.blade.php -->
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Edit Berita')
 

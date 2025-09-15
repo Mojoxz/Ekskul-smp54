@@ -11,16 +11,16 @@ class Ekskul extends Model
     use HasFactory;
 
     protected $fillable = [
-'nama',
-    'deskripsi',
-    'gambar',        // Tambahan
-    'jam_mulai',
-    'jam_selesai',
-    'hari',
-    'kategori',      // Tambahan
-    'kapasitas',     // Tambahan
-    'jumlah_anggota', // Tambahan
-    'status',
+        'nama',
+        'deskripsi',
+        'gambar',        // Tambahan
+        'jam_mulai',
+        'jam_selesai',
+        'hari',
+        'kategori',      // Tambahan
+        'kapasitas',     // Tambahan
+        'jumlah_anggota', // Tambahan
+        'status',
     ];
 
     protected $casts = [

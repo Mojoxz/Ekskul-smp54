@@ -1,5 +1,5 @@
 <!-- resources/views/admin/rekap-presensi.blade.php -->
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Rekap Presensi')
 

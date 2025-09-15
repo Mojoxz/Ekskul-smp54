@@ -6,6 +6,7 @@
     <title>@yield('title', 'SMP 54 Surabaya - Sistem Ekstrakurikuler')</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ asset('logo.png') }}">
     <style>
         .gradient-purple-yellow {
             background: linear-gradient(135deg, #8B5CF6 0%, #F59E0B 100%);
