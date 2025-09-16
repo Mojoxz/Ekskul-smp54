@@ -40,33 +40,43 @@
             @if($ekskuls->count() > 0)
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="ekstrakurikuler-grid">
                 @foreach($ekskuls as $ekskul)
-                <div class="ekskul-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl hover:scale-105 transition duration-300" data-category="{{ strtolower($ekskul->nama) }}">
-                    <div class="h-48 gradient-purple-yellow flex items-center justify-center relative">
-                        <!-- Icon berdasarkan nama ekstrakurikuler -->
-                        @php
-                            $icon = 'fas fa-star'; // default icon
-                            $name = strtolower($ekskul->nama);
-                            
-                            if(str_contains($name, 'basket')) $icon = 'fas fa-basketball-ball';
-                            elseif(str_contains($name, 'sepak') || str_contains($name, 'futsal')) $icon = 'fas fa-futbol';
-                            elseif(str_contains($name, 'voli')) $icon = 'fas fa-volleyball-ball';
-                            elseif(str_contains($name, 'badminton')) $icon = 'fas fa-shuttle';
-                            elseif(str_contains($name, 'tenis')) $icon = 'fas fa-table-tennis';
-                            elseif(str_contains($name, 'musik') || str_contains($name, 'band')) $icon = 'fas fa-music';
-                            elseif(str_contains($name, 'tari') || str_contains($name, 'dance')) $icon = 'fas fa-music';
-                            elseif(str_contains($name, 'drama') || str_contains($name, 'teater')) $icon = 'fas fa-theater-masks';
-                            elseif(str_contains($name, 'lukis') || str_contains($name, 'seni')) $icon = 'fas fa-palette';
-                            elseif(str_contains($name, 'english') || str_contains($name, 'bahasa')) $icon = 'fas fa-language';
-                            elseif(str_contains($name, 'komputer') || str_contains($name, 'programming')) $icon = 'fas fa-laptop-code';
-                            elseif(str_contains($name, 'science') || str_contains($name, 'sains')) $icon = 'fas fa-flask';
-                            elseif(str_contains($name, 'math') || str_contains($name, 'matematika')) $icon = 'fas fa-calculator';
-                            elseif(str_contains($name, 'debat')) $icon = 'fas fa-comments';
-                            elseif(str_contains($name, 'pramuka')) $icon = 'fas fa-campground';
-                            elseif(str_contains($name, 'pmr')) $icon = 'fas fa-plus';
-                            elseif(str_contains($name, 'rohis') || str_contains($name, 'agama')) $icon = 'fas fa-pray';
-                        @endphp
-                        
-                        <i class="{{ $icon }} text-white text-4xl"></i>
+                <div class="ekskul-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl hover:scale-105 transition duration-300" data-category="{{ strtolower($ekskul->kategori ?? $ekskul->nama) }}">
+                    <div class="h-48 relative">
+                        @if($ekskul->gambar && file_exists(public_path('storage/' . $ekskul->gambar)))
+                            <!-- Tampilkan gambar jika ada -->
+                            <img src="{{ asset('storage/' . $ekskul->gambar) }}" 
+                                 alt="{{ $ekskul->nama }}" 
+                                 class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+                        @else
+                            <!-- Fallback ke gradient dan icon jika tidak ada gambar -->
+                            <div class="h-full gradient-purple-yellow flex items-center justify-center">
+                                @php
+                                    $icon = 'fas fa-star'; // default icon
+                                    $name = strtolower($ekskul->nama);
+                                    
+                                    if(str_contains($name, 'basket')) $icon = 'fas fa-basketball-ball';
+                                    elseif(str_contains($name, 'sepak') || str_contains($name, 'futsal')) $icon = 'fas fa-futbol';
+                                    elseif(str_contains($name, 'voli')) $icon = 'fas fa-volleyball-ball';
+                                    elseif(str_contains($name, 'badminton')) $icon = 'fas fa-shuttle';
+                                    elseif(str_contains($name, 'tenis')) $icon = 'fas fa-table-tennis';
+                                    elseif(str_contains($name, 'musik') || str_contains($name, 'band')) $icon = 'fas fa-music';
+                                    elseif(str_contains($name, 'tari') || str_contains($name, 'dance')) $icon = 'fas fa-music';
+                                    elseif(str_contains($name, 'drama') || str_contains($name, 'teater')) $icon = 'fas fa-theater-masks';
+                                    elseif(str_contains($name, 'lukis') || str_contains($name, 'seni')) $icon = 'fas fa-palette';
+                                    elseif(str_contains($name, 'english') || str_contains($name, 'bahasa')) $icon = 'fas fa-language';
+                                    elseif(str_contains($name, 'komputer') || str_contains($name, 'programming')) $icon = 'fas fa-laptop-code';
+                                    elseif(str_contains($name, 'science') || str_contains($name, 'sains')) $icon = 'fas fa-flask';
+                                    elseif(str_contains($name, 'math') || str_contains($name, 'matematika')) $icon = 'fas fa-calculator';
+                                    elseif(str_contains($name, 'debat')) $icon = 'fas fa-comments';
+                                    elseif(str_contains($name, 'pramuka')) $icon = 'fas fa-campground';
+                                    elseif(str_contains($name, 'pmr')) $icon = 'fas fa-plus';
+                                    elseif(str_contains($name, 'rohis') || str_contains($name, 'agama')) $icon = 'fas fa-pray';
+                                @endphp
+                                
+                                <i class="{{ $icon }} text-white text-4xl"></i>
+                            </div>
+                        @endif
                         
                         <!-- Status Badge -->
                         <div class="absolute top-4 right-4">
@@ -88,8 +98,14 @@
                             </div>
                             <div class="flex items-center text-gray-500">
                                 <i class="fas fa-users mr-2 w-4"></i>
-                                <span>{{ rand(15, 30) }} Anggota</span>
+                                <span>{{ $ekskul->jumlah_anggota ?? rand(15, 30) }} Anggota</span>
                             </div>
+                            @if($ekskul->kapasitas)
+                            <div class="flex items-center text-gray-500">
+                                <i class="fas fa-user-friends mr-2 w-4"></i>
+                                <span>Kapasitas: {{ $ekskul->kapasitas }} Orang</span>
+                            </div>
+                            @endif
                         </div>
                         
                         <div class="mt-6 pt-4 border-t border-gray-200">
@@ -102,7 +118,7 @@
                                         </div>
                                         @endfor
                                     </div>
-                                    <span class="text-xs text-gray-500 ml-2">+{{ rand(10, 25) }} lainnya</span>
+                                    <span class="text-xs text-gray-500 ml-2">+{{ ($ekskul->jumlah_anggota ?? 25) - 3 }} lainnya</span>
                                 </div>
                                 <button class="text-purple-600 hover:text-purple-800 font-semibold text-sm transition duration-300">
                                     <i class="fas fa-info-circle mr-1"></i> Detail
@@ -210,15 +226,24 @@ function filterEkskul(category) {
         if (category === 'all') {
             card.style.display = 'block';
         } else {
-            const cardCategory = card.getAttribute('data-category');
-            if (cardCategory.includes(category) || 
-                (category === 'olahraga' && (cardCategory.includes('basket') || cardCategory.includes('sepak') || cardCategory.includes('futsal') || cardCategory.includes('voli') || cardCategory.includes('badminton') || cardCategory.includes('tenis'))) ||
-                (category === 'seni' && (cardCategory.includes('musik') || cardCategory.includes('band') || cardCategory.includes('tari') || cardCategory.includes('dance') || cardCategory.includes('drama') || cardCategory.includes('teater') || cardCategory.includes('lukis') || cardCategory.includes('seni'))) ||
-                (category === 'akademik' && (cardCategory.includes('english') || cardCategory.includes('bahasa') || cardCategory.includes('komputer') || cardCategory.includes('programming') || cardCategory.includes('science') || cardCategory.includes('sains') || cardCategory.includes('math') || cardCategory.includes('matematika') || cardCategory.includes('debat')))) {
-                card.style.display = 'block';
+            const cardCategory = card.getAttribute('data-category').toLowerCase();
+            let shouldShow = false;
+            
+            // Check by category field first, then by name
+            if (cardCategory.includes(category)) {
+                shouldShow = true;
             } else {
-                card.style.display = 'none';
+                // Fallback to name-based categorization
+                if (category === 'olahraga' && (cardCategory.includes('basket') || cardCategory.includes('sepak') || cardCategory.includes('futsal') || cardCategory.includes('voli') || cardCategory.includes('badminton') || cardCategory.includes('tenis'))) {
+                    shouldShow = true;
+                } else if (category === 'seni' && (cardCategory.includes('musik') || cardCategory.includes('band') || cardCategory.includes('tari') || cardCategory.includes('dance') || cardCategory.includes('drama') || cardCategory.includes('teater') || cardCategory.includes('lukis') || cardCategory.includes('seni'))) {
+                    shouldShow = true;
+                } else if (category === 'akademik' && (cardCategory.includes('english') || cardCategory.includes('bahasa') || cardCategory.includes('komputer') || cardCategory.includes('programming') || cardCategory.includes('science') || cardCategory.includes('sains') || cardCategory.includes('math') || cardCategory.includes('matematika') || cardCategory.includes('debat'))) {
+                    shouldShow = true;
+                }
             }
+            
+            card.style.display = shouldShow ? 'block' : 'none';
         }
     });
 }

@@ -59,6 +59,21 @@
         <!-- Navigation Menu -->
         <nav class="mt-6 px-4">
             <div class="space-y-2">
+                <!-- Kembali ke Beranda -->
+                <a href="{{ route('home') }}" target="_blank"
+                   class="sidebar-link flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 group text-purple-200 hover:bg-blue-600/20 hover:text-blue-300 border border-blue-500/20">
+                    <div class="w-8 h-8 bg-blue-600/30 rounded-lg flex items-center justify-center mr-3 group-hover:bg-blue-600/50 transition-colors">
+                        <i class="fas fa-home text-sm"></i>
+                    </div>
+                    <span>Kembali ke Beranda</span>
+                    <div class="ml-auto">
+                        <i class="fas fa-external-link-alt text-xs text-blue-300 opacity-70"></i>
+                    </div>
+                </a>
+
+                <!-- Separator -->
+                <div class="my-4 border-t border-purple-700/30"></div>
+
                 <!-- Dashboard -->
                 <a href="{{ route('admin.dashboard') }}"
                    class="sidebar-link flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 group
@@ -189,6 +204,13 @@
                         
                         <!-- Right side actions -->
                         <div class="flex items-center space-x-4">
+                            <!-- Quick link to homepage -->
+                            <a href="{{ route('home') }}" target="_blank" class="hidden sm:flex items-center px-3 py-1 text-xs font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-full transition-colors">
+                                <i class="fas fa-home mr-1"></i>
+                                Lihat Website
+                                <i class="fas fa-external-link-alt ml-1 text-xs"></i>
+                            </a>
+
                             <!-- Notifications -->
                             <button class="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-full transition-colors relative">
                                 <i class="fas fa-bell text-lg"></i>

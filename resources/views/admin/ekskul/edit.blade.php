@@ -67,6 +67,49 @@
                     <option value="keagamaan" {{ old('kategori', $ekskul->kategori) == 'keagamaan' ? 'selected' : '' }}>Keagamaan</option>
                     <option value="lainnya" {{ old('kategori', $ekskul->kategori) == 'lainnya' ? 'selected' : '' }}>Lainnya</option>
                 </select>
+                @error('kategori')
+                    <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="kapasitas">
+                    Kapasitas Maksimal
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('kapasitas') border-red-500 @enderror"
+                       id="kapasitas" name="kapasitas" type="number" min="1" value="{{ old('kapasitas', $ekskul->kapasitas) }}" required>
+                @error('kapasitas')
+                    <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+                @enderror
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="hari">
+                    Hari
+                </label>
+                <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('hari') border-red-500 @enderror"
+                        id="hari" name="hari" required>
+                    <option value="">Pilih Hari</option>
+                    <option value="Senin" {{ old('hari', $ekskul->hari) == 'Senin' ? 'selected' : '' }}>Senin</option>
+                    <option value="Selasa" {{ old('hari', $ekskul->hari) == 'Selasa' ? 'selected' : '' }}>Selasa</option>
+                    <option value="Rabu" {{ old('hari', $ekskul->hari) == 'Rabu' ? 'selected' : '' }}>Rabu</option>
+                    <option value="Kamis" {{ old('hari', $ekskul->hari) == 'Kamis' ? 'selected' : '' }}>Kamis</option>
+                    <option value="Jumat" {{ old('hari', $ekskul->hari) == 'Jumat' ? 'selected' : '' }}>Jumat</option>
+                    <option value="Sabtu" {{ old('hari', $ekskul->hari) == 'Sabtu' ? 'selected' : '' }}>Sabtu</option>
+                </select>
+                @error('hari')
+                    <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="jam_mulai">
+                    Jam Mulai
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('jam_mulai') border-red-500 @enderror"
+                       id="jam_mulai" name="jam_mulai" type="time" value="{{ old('jam_mulai', $ekskul->jam_mulai ? date('H:i', strtotime($ekskul->jam_mulai)) : '') }}" required>
                 @error('jam_mulai')
                     <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
                 @enderror
@@ -101,4 +144,33 @@
         </div>
     </form>
 </div>
+
+<script>
+// Image preview
+document.getElementById('gambar').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            // Remove existing preview
+            const existingPreview = document.getElementById('image-preview');
+            if (existingPreview) {
+                existingPreview.remove();
+            }
+
+            // Create preview
+            const preview = document.createElement('div');
+            preview.id = 'image-preview';
+            preview.className = 'mt-4';
+            preview.innerHTML = `
+                <p class="text-sm text-gray-600 mb-2">Preview:</p>
+                <img src="${e.target.result}" alt="Preview" class="w-32 h-32 object-cover rounded-lg border">
+            `;
+            
+            document.getElementById('gambar').parentNode.appendChild(preview);
+        };
+        reader.readAsDataURL(file);
+    }
+});
+</script>
 @endsection
