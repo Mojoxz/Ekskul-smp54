@@ -32,7 +32,7 @@ class AdminController extends Controller
     public function muridIndex(Request $request)
     {
         $query = User::where('role', 'murid')->with('ekskuls');
-        
+
         if ($request->has('search')) {
             $search = $request->get('search');
             $query->where(function($q) use ($search) {
@@ -129,7 +129,7 @@ class AdminController extends Controller
     public function ekskulIndex(Request $request)
     {
         $query = Ekskul::query();
-        
+
         if ($request->has('search')) {
             $search = $request->get('search');
             $query->where('nama', 'LIKE', "%{$search}%");
@@ -211,7 +211,7 @@ class AdminController extends Controller
     public function ekskulDestroy($id)
     {
         $ekskul = Ekskul::findOrFail($id);
-        
+
         // Hapus gambar jika ada
         if ($ekskul->gambar) {
             Storage::disk('public')->delete($ekskul->gambar);
@@ -228,7 +228,7 @@ class AdminController extends Controller
     public function beritaIndex(Request $request)
     {
         $query = Berita::with('user')->latest();
-        
+
         if ($request->has('search')) {
             $search = $request->get('search');
             $query->where('judul', 'LIKE', "%{$search}%");
@@ -297,7 +297,7 @@ class AdminController extends Controller
     public function beritaDestroy($id)
     {
         $berita = Berita::findOrFail($id);
-        
+
         // Hapus foto jika ada
         if ($berita->foto) {
             Storage::disk('public')->delete($berita->foto);
@@ -393,4 +393,7 @@ class AdminController extends Controller
         }
         return response()->json(['success' => false, 'message' => 'Tidak ada data yang dipilih']);
     }
+
+
+
 }

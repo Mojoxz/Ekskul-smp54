@@ -8,6 +8,7 @@ use App\Models\Presensi;
 use App\Models\Berita;
 use App\Models\Ekskul;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class MuridController extends Controller
 {
@@ -96,4 +97,67 @@ class MuridController extends Controller
         $beritas = Berita::where('status', true)->latest()->limit(6)->get();
         return view('murid.homepage', compact('beritas'));
     }
+
+
+        public function profile()
+    {
+        $user = auth()->user();
+        return view('murid.profile', compact('user'));
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $user = auth()->user();
+
+        $request->validate([
+            'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        if ($request->hasFile('profile_photo')) {
+            // Hapus foto lama jika ada
+            if ($user->profile_photo) {
+                Storage::disk('public')->delete($user->profile_photo);
+            }
+
+            // Simpan foto baru
+            $path = $request->file('profile_photo')->store('profile_photos', 'public');
+            $user->update(['profile_photo' => $path]);
+        }
+
+        return redirect()->route('murid.profile')->with('success', 'Foto profil berhasil diperbarui!');
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'password' => ['required', 'confirmed', Password::min(6)],
+        ], [
+            'current_password.required' => 'Password lama harus diisi.',
+            'password.required' => 'Password baru harus diisi.',
+            'password.confirmed' => 'Konfirmasi password tidak cocok.',
+            'password.min' => 'Password minimal 6 karakter.',
+        ]);
+
+        $user = auth()->user();
+
+        // Verifikasi password lama
+        if (!Hash::check($request->current_password, $user->password)) {
+            return redirect()->route('murid.profile')
+                ->withErrors(['current_password' => 'Password lama tidak sesuai.']);
+        }
+
+        // Update password
+        $user->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        return redirect()->route('murid.profile')->with('success', 'Password berhasil diperbarui!');
+    }
+
+    // ... other existing methods ...
 }
+
+
+
+

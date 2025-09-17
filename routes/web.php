@@ -66,9 +66,14 @@ Route::middleware(['auth', 'murid'])->prefix('murid')->name('murid.')->group(fun
     Route::get('/presensi', [MuridController::class, 'presensi'])->name('presensi');
     Route::post('/presensi', [MuridController::class, 'storePresensi'])->name('presensi.store');
     Route::get('/homepage', [MuridController::class, 'homepage'])->name('homepage');
+
+    // Profile routes - Updated
+    Route::get('/profile', [MuridController::class, 'profile'])->name('profile');
+    Route::put('/profile', [MuridController::class, 'updateProfile'])->name('profile.update');
+    Route::put('/profile/password', [MuridController::class, 'updatePassword'])->name('profile.password');
 });
 
-// Profile routes
+// General Profile routes (if needed for other purposes)
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
