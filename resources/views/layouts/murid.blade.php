@@ -12,31 +12,31 @@
         .sidebar-transition {
             transition: transform 0.3s ease-in-out;
         }
-        
+
         @media (min-width: 1024px) {
             .main-content {
                 margin-left: 16rem; /* w-64 = 16rem */
             }
         }
-        
+
         .gradient-blue {
             background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
         }
-        
+
         .gradient-student {
             background: linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #0e7490 100%);
         }
-        
+
         .floating {
             animation: floating 3s ease-in-out infinite;
         }
-        
+
         @keyframes floating {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-5px); }
             100% { transform: translateY(0px); }
         }
-        
+
         .sidebar-link.active {
             background-color: rgba(6, 182, 212, 0.2);
             border-right: 4px solid #fbbf24;
@@ -57,7 +57,7 @@
     </style>
 </head>
 <body class="bg-gradient-to-br from-cyan-50 to-blue-100 min-h-screen">
-    
+
     <!-- Sidebar -->
     <div id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-gradient-to-b from-cyan-600 via-cyan-700 to-blue-800 sidebar-transition transform -translate-x-full lg:translate-x-0 shadow-2xl">
         <!-- Logo Section -->
@@ -137,14 +137,14 @@
                 <div class="my-4 border-t border-cyan-600/30"></div>
 
                 <!-- Profil -->
-                <a href="{{ route('profile.show') }}"
+                <a href="{{ route('murid.profile') }}"
                    class="sidebar-link flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 group hover-lift
-                          {{ request()->routeIs('profile.*') ? 'bg-cyan-700 text-white shadow-lg' : 'text-cyan-100 hover:bg-cyan-700/50 hover:text-white' }}">
+                          {{ request()->routeIs('murid.profile.*') ? 'bg-cyan-700 text-white shadow-lg' : 'text-cyan-100 hover:bg-cyan-700/50 hover:text-white' }}">
                     <div class="w-8 h-8 bg-purple-600/40 rounded-lg flex items-center justify-center mr-3 group-hover:bg-purple-600/60 transition-colors">
                         <i class="fas fa-user-circle text-sm"></i>
                     </div>
                     <span>Profil Saya</span>
-                    @if(request()->routeIs('profile.*'))
+                    @if(request()->routeIs('murid.profile.*'))
                         <div class="ml-auto w-2 h-2 bg-yellow-400 rounded-full pulse-soft"></div>
                     @endif
                 </a>
@@ -218,7 +218,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Right side actions -->
                         <div class="flex items-center space-x-4">
                             <!-- Quick Presensi Button -->
@@ -232,7 +232,7 @@
                                 <i class="fas fa-bell text-lg"></i>
                                 <span class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full pulse-soft"></span>
                             </button>
-                            
+
                             <!-- Current time -->
                             <div class="hidden sm:block text-sm text-gray-500">
                                 <i class="fas fa-clock mr-1"></i>
@@ -312,7 +312,7 @@
             if (mobileMenuButton) {
                 mobileMenuButton.addEventListener('click', openSidebar);
             }
-            
+
             if (overlay) {
                 overlay.addEventListener('click', closeSidebar);
             }
@@ -327,9 +327,9 @@
             // Update current time
             function updateTime() {
                 const now = new Date();
-                const timeString = now.toLocaleTimeString('id-ID', { 
-                    hour: '2-digit', 
-                    minute: '2-digit' 
+                const timeString = now.toLocaleTimeString('id-ID', {
+                    hour: '2-digit',
+                    minute: '2-digit'
                 });
                 const timeElement = document.getElementById('current-time');
                 if (timeElement) {

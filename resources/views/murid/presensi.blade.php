@@ -1,5 +1,5 @@
 <!-- resources/views/murid/presensi.blade.php -->
-@extends('layouts.app')
+@extends('layouts.murid')
 
 @section('title', 'Presensi')
 
