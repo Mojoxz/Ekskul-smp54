@@ -145,15 +145,26 @@
                 <!-- Separator -->
                 <div class="my-4 border-t border-cyan-600/30"></div>
 
+<<<<<<< HEAD
                 <!-- Profil - Updated to be clickable -->
                 <a href="{{ route('murid.profile') }}"
                    class="sidebar-link flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 group hover-lift
                           {{ request()->routeIs('murid.profile*') ? 'bg-cyan-700 text-white shadow-lg' : 'text-cyan-100 hover:bg-cyan-700/50 hover:text-white' }}">
+=======
+                <!-- Profil -->
+                <a href="{{ route('murid.profile') }}"
+                   class="sidebar-link flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 group hover-lift
+                          {{ request()->routeIs('murid.profile.*') ? 'bg-cyan-700 text-white shadow-lg' : 'text-cyan-100 hover:bg-cyan-700/50 hover:text-white' }}">
+>>>>>>> fe7bac00789f5a53c146ea8d395d9e800d68913d
                     <div class="w-8 h-8 bg-purple-600/40 rounded-lg flex items-center justify-center mr-3 group-hover:bg-purple-600/60 transition-colors">
                         <i class="fas fa-user-circle text-sm"></i>
                     </div>
                     <span>Profil Saya</span>
+<<<<<<< HEAD
                     @if(request()->routeIs('murid.profile*'))
+=======
+                    @if(request()->routeIs('murid.profile.*'))
+>>>>>>> fe7bac00789f5a53c146ea8d395d9e800d68913d
                         <div class="ml-auto w-2 h-2 bg-yellow-400 rounded-full pulse-soft"></div>
                     @endif
                 </a>
