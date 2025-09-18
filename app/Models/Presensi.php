@@ -17,6 +17,7 @@ class Presensi extends Model
         'jam',
         'status',
         'keterangan',
+        'foto_presensi', // Add this field
     ];
 
     protected $casts = [
@@ -32,5 +33,14 @@ class Presensi extends Model
     public function ekskul()
     {
         return $this->belongsTo(Ekskul::class);
+    }
+
+    // Accessor untuk mendapatkan URL foto presensi
+    public function getFotoPresensiUrlAttribute()
+    {
+        if ($this->foto_presensi) {
+            return asset('storage/' . $this->foto_presensi);
+        }
+        return null;
     }
 }

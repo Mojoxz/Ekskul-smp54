@@ -9,6 +9,8 @@ use App\Models\Berita;
 use App\Models\Ekskul;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 
 class MuridController extends Controller
 {
@@ -68,6 +70,7 @@ class MuridController extends Controller
         $request->validate([
             'status' => 'required|in:hadir,tidak_hadir,izin',
             'keterangan' => 'nullable|string|max:255',
+            'foto_presensi' => 'nullable|string', // Base64 image data
         ]);
 
         // Check if already present today
@@ -80,6 +83,30 @@ class MuridController extends Controller
             return back()->with('error', 'Anda sudah melakukan presensi hari ini');
         }
 
+        $fotoPath = null;
+
+        // Handle photo upload if provided
+        if ($request->filled('foto_presensi')) {
+            try {
+                // Remove data:image/jpeg;base64, part
+                $base64Image = preg_replace('/^data:image\/\w+;base64,/', '', $request->foto_presensi);
+                $imageData = base64_decode($base64Image);
+                
+                if ($imageData !== false) {
+                    // Generate unique filename
+                    $fileName = 'presensi_' . $user->id . '_' . date('Y-m-d_H-i-s') . '.jpg';
+                    $filePath = 'presensi_photos/' . $fileName;
+                    
+                    // Save to storage
+                    Storage::disk('public')->put($filePath, $imageData);
+                    $fotoPath = $filePath;
+                }
+            } catch (\Exception $e) {
+                // Log error but continue without photo
+                \Log::error('Error saving presensi photo: ' . $e->getMessage());
+            }
+        }
+
         Presensi::create([
             'user_id' => $user->id,
             'ekskul_id' => $ekskulId,
@@ -87,6 +114,7 @@ class MuridController extends Controller
             'jam' => now()->format('H:i:s'),
             'status' => $request->status,
             'keterangan' => $request->keterangan,
+            'foto_presensi' => $fotoPath,
         ]);
 
         return back()->with('success', 'Presensi berhasil disimpan');
@@ -98,8 +126,7 @@ class MuridController extends Controller
         return view('murid.homepage', compact('beritas'));
     }
 
-
-        public function profile()
+    public function profile()
     {
         $user = auth()->user();
         return view('murid.profile', compact('user'));
@@ -157,7 +184,3 @@ class MuridController extends Controller
 
     // ... other existing methods ...
 }
-
-
-
-
