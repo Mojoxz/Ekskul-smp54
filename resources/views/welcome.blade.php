@@ -116,19 +116,53 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             @foreach($ekskuls->take(4) as $ekskul)
             <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl hover:scale-105 transition duration-300">
-                <div class="h-32 gradient-purple-yellow flex items-center justify-center">
-                    <i class="fas fa-star text-white text-3xl"></i>
+                <div class="h-32 relative">
+                    @if($ekskul->gambar && file_exists(public_path('storage/' . $ekskul->gambar)))
+                        <!-- Tampilkan gambar jika ada -->
+                        <img src="{{ asset('storage/' . $ekskul->gambar) }}" 
+                             alt="{{ $ekskul->nama }}" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+                    @else
+                        <!-- Fallback ke gradient dan icon jika tidak ada gambar -->
+                        <div class="h-full gradient-purple-yellow flex items-center justify-center">
+                            @php
+                                $icon = 'fas fa-star'; // default icon
+                                $name = strtolower($ekskul->nama);
+                                
+                                if(str_contains($name, 'basket')) $icon = 'fas fa-basketball-ball';
+                                elseif(str_contains($name, 'sepak') || str_contains($name, 'futsal')) $icon = 'fas fa-futbol';
+                                elseif(str_contains($name, 'voli')) $icon = 'fas fa-volleyball-ball';
+                                elseif(str_contains($name, 'badminton')) $icon = 'fas fa-shuttle';
+                                elseif(str_contains($name, 'tenis')) $icon = 'fas fa-table-tennis';
+                                elseif(str_contains($name, 'musik') || str_contains($name, 'band')) $icon = 'fas fa-music';
+                                elseif(str_contains($name, 'tari') || str_contains($name, 'dance')) $icon = 'fas fa-music';
+                                elseif(str_contains($name, 'drama') || str_contains($name, 'teater')) $icon = 'fas fa-theater-masks';
+                                elseif(str_contains($name, 'lukis') || str_contains($name, 'seni')) $icon = 'fas fa-palette';
+                                elseif(str_contains($name, 'english') || str_contains($name, 'bahasa')) $icon = 'fas fa-language';
+                                elseif(str_contains($name, 'komputer') || str_contains($name, 'programming')) $icon = 'fas fa-laptop-code';
+                                elseif(str_contains($name, 'science') || str_contains($name, 'sains')) $icon = 'fas fa-flask';
+                                elseif(str_contains($name, 'math') || str_contains($name, 'matematika')) $icon = 'fas fa-calculator';
+                                elseif(str_contains($name, 'debat')) $icon = 'fas fa-comments';
+                                elseif(str_contains($name, 'pramuka')) $icon = 'fas fa-campground';
+                                elseif(str_contains($name, 'pmr')) $icon = 'fas fa-plus';
+                                elseif(str_contains($name, 'rohis') || str_contains($name, 'agama')) $icon = 'fas fa-pray';
+                            @endphp
+                            
+                            <i class="{{ $icon }} text-white text-3xl"></i>
+                        </div>
+                    @endif
                 </div>
                 <div class="p-6">
                     <h3 class="font-bold text-lg mb-2 text-gray-800">{{ $ekskul->nama }}</h3>
-                    <p class="text-gray-600 text-sm mb-3">{{ Str::limit($ekskul->deskripsi, 80) }}</p>
+                    <p class="text-gray-600 text-sm mb-3">{{ Str::limit($ekskul->deskripsi ?: 'Kegiatan ekstrakurikuler yang mengembangkan bakat dan minat siswa.', 80) }}</p>
                     <div class="flex items-center text-sm text-gray-500">
                         <i class="fas fa-clock mr-1"></i>
-                        {{ $ekskul->jam_mulai->format('H:i') }} - {{ $ekskul->jam_selesai->format('H:i') }}
+                        {{ $ekskul->jam_mulai ? $ekskul->jam_mulai->format('H:i') : '00:00' }} - {{ $ekskul->jam_selesai ? $ekskul->jam_selesai->format('H:i') : '00:00' }}
                     </div>
                     <div class="flex items-center text-sm text-gray-500 mt-1">
                         <i class="fas fa-calendar mr-1"></i>
-                        {{ $ekskul->hari }}
+                        {{ $ekskul->hari ?: 'Setiap Hari' }}
                     </div>
                 </div>
             </div>
