@@ -22,9 +22,6 @@
             50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
         }
-        .dropdown:hover .dropdown-menu {
-            display: block;
-        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-purple-50 via-yellow-50 to-purple-100 min-h-screen">
@@ -34,7 +31,9 @@
             <div class="flex justify-between items-center">
                 <div class="flex items-center space-x-3">
                     <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                        <i class="fas fa-graduation-cap text-purple-600"></i>
+                        <img src="{{ asset('logo.png') }}" 
+                            alt="Logo Ekskul" 
+                             class="w-8 h-8">
                     </div>
                     <div>
                         <h1 class="text-xl font-bold">SMP 54 Surabaya</h1>
@@ -61,20 +60,14 @@
                     </a>
                 </div>
 
-                <!-- Login Dropdown -->
-                <div class="relative dropdown">
-                    <button class="bg-white text-purple-600 px-4 py-2 rounded-full font-semibold hover:bg-yellow-100 transition duration-300 flex items-center">
-                        <i class="fas fa-sign-in-alt mr-2"></i> Login
-                        <i class="fas fa-chevron-down ml-1"></i>
-                    </button>
-                    <div class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 hidden">
-                        <a href="{{ route('admin.login') }}" class="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition duration-300 rounded-t-lg">
-                            <i class="fas fa-user-shield mr-2"></i> Login Admin
-                        </a>
-                        <a href="{{ route('murid.login') }}" class="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition duration-300 rounded-b-lg border-t border-gray-200">
-                            <i class="fas fa-user-graduate mr-2"></i> Login Siswa
-                        </a>
-                    </div>
+                <!-- Login Button (Siswa Only) -->
+                <div class="flex items-center space-x-4">
+                    <a href="{{ route('murid.login') }}" class="bg-white text-purple-600 px-4 py-2 rounded-full font-semibold hover:bg-yellow-100 transition duration-300 flex items-center">
+                        <i class="fas fa-sign-in-alt mr-2"></i> Login Siswa
+                    </a>
+                    
+                    <!-- Hidden Admin Login (for security) -->
+                    <a href="{{ route('admin.login') }}" class="hidden">Admin</a>
                 </div>
 
                 <!-- Mobile Menu Button -->
@@ -102,9 +95,6 @@
                         <i class="fas fa-phone mr-2"></i> Kontak
                     </a>
                     <hr class="border-purple-300">
-                    <a href="{{ route('admin.login') }}" class="hover:text-yellow-300 transition duration-300">
-                        <i class="fas fa-user-shield mr-2"></i> Login Admin
-                    </a>
                     <a href="{{ route('murid.login') }}" class="hover:text-yellow-300 transition duration-300">
                         <i class="fas fa-user-graduate mr-2"></i> Login Siswa
                     </a>

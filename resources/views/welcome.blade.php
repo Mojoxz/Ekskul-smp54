@@ -3,39 +3,129 @@
 @section('title', 'Beranda - SMP 54 Surabaya')
 
 @section('content')
-<!-- Hero Section -->
-<section class="relative overflow-hidden">
-    <div class="absolute inset-0 z-0">
-        <div class="w-full h-full gradient-purple-yellow opacity-90"></div>
-    </div>
-    
-    <!-- Background Image Container -->
-    <div class="absolute inset-0 z-0">
-        <img src="{{ asset('images/padding_awal.jpeg') }}" alt="" class="w-full h-full object-cover opacity-20">
-    </div>
-    
-    <div class="relative z-10 container mx-auto px-4 py-20">
-        <div class="text-center text-white">
-            <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                Sistem Presensi Ekstrakurikuler
-                <span class="text-yellow-300">Digital</span>
-            </h1>
-            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto opacity-90">
-                Platform modern untuk mengelola dan memantau kegiatan ekstrakurikuler dengan mudah, efisien, dan terintegrasi
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#features" class="bg-white text-purple-600 font-bold py-4 px-8 rounded-full hover:bg-yellow-100 transition duration-300 shadow-lg">
-                    <i class="fas fa-play mr-2"></i> Jelajahi Fitur
-                </a>
-                <a href="{{ route('berita') }}" class="bg-yellow-500 text-white font-bold py-4 px-8 rounded-full hover:bg-yellow-600 transition duration-300 shadow-lg">
-                    <i class="fas fa-newspaper mr-2"></i> Lihat Berita
-                </a>
+<!-- Hero Carousel Section -->
+<section class="relative overflow-hidden h-screen">
+    <!-- Carousel Container -->
+    <div class="carousel-container relative w-full h-full">
+        <!-- Slide 1 -->
+        <div class="carousel-slide active absolute inset-0">
+            <div class="absolute inset-0 z-0">
+                <div class="w-full h-full gradient-purple-yellow opacity-90"></div>
+            </div>
+            <div class="absolute inset-0 z-0">
+                <img src="{{ asset('images/padding_awal.jpeg') }}" alt="Kegiatan Ekstrakurikuler" class="w-full h-full object-cover opacity-20">
+            </div>
+            <div class="relative z-10 flex items-center justify-center h-full">
+                <div class="text-center text-white px-4 max-w-6xl">
+                    <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight animate-fade-in">
+                        Sistem Presensi
+                        <span class="text-yellow-300 floating">Ekstrakurikuler</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto opacity-90 animate-slide-up">
+                        Platform modern untuk mengelola dan memantau kegiatan ekstrakurikuler dengan mudah, efisien, dan terintegrasi
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-delay">
+                        <a href="#features" class="bg-white text-purple-600 font-bold py-4 px-8 rounded-full hover:bg-yellow-100 transform hover:scale-105 transition duration-300 shadow-lg">
+                            <i class="fas fa-play mr-2"></i> Jelajahi Fitur
+                        </a>
+                        <a href="{{ route('berita') }}" class="bg-yellow-500 text-white font-bold py-4 px-8 rounded-full hover:bg-yellow-600 transform hover:scale-105 transition duration-300 shadow-lg">
+                            <i class="fas fa-newspaper mr-2"></i> Lihat Berita
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-slide absolute inset-0">
+            <div class="absolute inset-0 z-0">
+                <div class="w-full h-full bg-gradient-to-r from-blue-600 to-purple-600 opacity-90"></div>
+            </div>
+            <div class="relative z-10 flex items-center justify-center h-full">
+                <div class="text-center text-white px-4 max-w-6xl">
+                    <div class="mb-8">
+                        <i class="fas fa-users text-8xl text-yellow-300 floating"></i>
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                        <span class="text-yellow-300">{{ $ekskuls->count() }}+</span> Ekstrakurikuler
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto opacity-90">
+                        Berbagai pilihan kegiatan untuk mengembangkan bakat dan minat siswa dalam berbagai bidang
+                    </p>
+                    <a href="{{ route('ekstrakurikuler') }}" class="bg-yellow-500 text-white font-bold py-4 px-8 rounded-full hover:bg-yellow-600 transform hover:scale-105 transition duration-300 shadow-lg">
+                        <i class="fas fa-arrow-right mr-2"></i> Lihat Semua Ekstrakurikuler
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-slide absolute inset-0">
+            <div class="absolute inset-0 z-0">
+                <div class="w-full h-full bg-gradient-to-r from-green-500 to-blue-600 opacity-90"></div>
+            </div>
+            <div class="relative z-10 flex items-center justify-center h-full">
+                <div class="text-center text-white px-4 max-w-6xl">
+                    <div class="mb-8">
+                        <i class="fas fa-chart-line text-8xl text-yellow-300 floating"></i>
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                        Tingkat Kehadiran <span class="text-yellow-300">95%</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto opacity-90">
+                        Sistem presensi digital yang akurat dan real-time untuk memantau keaktifan siswa
+                    </p>
+                    <a href="#features" class="bg-yellow-500 text-white font-bold py-4 px-8 rounded-full hover:bg-yellow-600 transform hover:scale-105 transition duration-300 shadow-lg">
+                        <i class="fas fa-check-circle mr-2"></i> Pelajari Sistem Presensi
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="carousel-slide absolute inset-0">
+            <div class="absolute inset-0 z-0">
+                <div class="w-full h-full bg-gradient-to-r from-pink-500 to-purple-600 opacity-90"></div>
+            </div>
+            <div class="relative z-10 flex items-center justify-center h-full">
+                <div class="text-center text-white px-4 max-w-6xl">
+                    <div class="mb-8">
+                        <i class="fas fa-newspaper text-8xl text-yellow-300 floating"></i>
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                        <span class="text-yellow-300">{{ $beritas->count() }}+</span> Berita Terkini
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto opacity-90">
+                        Update terbaru tentang kegiatan, prestasi, dan perkembangan ekstrakurikuler sekolah
+                    </p>
+                    <a href="{{ route('berita') }}" class="bg-yellow-500 text-white font-bold py-4 px-8 rounded-full hover:bg-yellow-600 transform hover:scale-105 transition duration-300 shadow-lg">
+                        <i class="fas fa-newspaper mr-2"></i> Baca Berita Terkini
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-    
+
+    <!-- Carousel Navigation -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+        <div class="flex space-x-3">
+            <button class="carousel-dot active w-3 h-3 rounded-full bg-white opacity-60 hover:opacity-100 transition duration-300" data-slide="0"></button>
+            <button class="carousel-dot w-3 h-3 rounded-full bg-white opacity-60 hover:opacity-100 transition duration-300" data-slide="1"></button>
+            <button class="carousel-dot w-3 h-3 rounded-full bg-white opacity-60 hover:opacity-100 transition duration-300" data-slide="2"></button>
+            <button class="carousel-dot w-3 h-3 rounded-full bg-white opacity-60 hover:opacity-100 transition duration-300" data-slide="3"></button>
+        </div>
+    </div>
+
+    <!-- Carousel Arrow Controls -->
+    <button class="carousel-prev absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white bg-opacity-20 hover:bg-opacity-30 text-white p-3 rounded-full backdrop-blur-sm transition duration-300">
+        <i class="fas fa-chevron-left text-xl"></i>
+    </button>
+    <button class="carousel-next absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white bg-opacity-20 hover:bg-opacity-30 text-white p-3 rounded-full backdrop-blur-sm transition duration-300">
+        <i class="fas fa-chevron-right text-xl"></i>
+    </button>
+
     <!-- Scroll Indicator -->
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+    <div class="absolute bottom-20 left-1/2 transform -translate-x-1/2 text-white animate-bounce z-20">
         <i class="fas fa-chevron-down text-2xl"></i>
     </div>
 </section>
@@ -85,20 +175,20 @@
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div class="text-center">
-                <div class="text-4xl md:text-5xl font-bold mb-2">{{ $ekskuls->count() }}+</div>
+            <div class="text-center transform hover:scale-110 transition duration-300">
+                <div class="text-4xl md:text-5xl font-bold mb-2 counter" data-target="{{ $ekskuls->count() }}">0</div>
                 <div class="text-lg opacity-90">Ekstrakurikuler</div>
             </div>
-            <div class="text-center">
-                <div class="text-4xl md:text-5xl font-bold mb-2">500+</div>
+            <div class="text-center transform hover:scale-110 transition duration-300">
+                <div class="text-4xl md:text-5xl font-bold mb-2 counter" data-target="500">0</div>
                 <div class="text-lg opacity-90">Siswa Aktif</div>
             </div>
-            <div class="text-center">
-                <div class="text-4xl md:text-5xl font-bold mb-2">95%</div>
-                <div class="text-lg opacity-90">Tingkat Kehadiran</div>
+            <div class="text-center transform hover:scale-110 transition duration-300">
+                <div class="text-4xl md:text-5xl font-bold mb-2 counter" data-target="95">0</div>
+                <div class="text-lg opacity-90">% Tingkat Kehadiran</div>
             </div>
-            <div class="text-center">
-                <div class="text-4xl md:text-5xl font-bold mb-2">{{ $beritas->count() }}+</div>
+            <div class="text-center transform hover:scale-110 transition duration-300">
+                <div class="text-4xl md:text-5xl font-bold mb-2 counter" data-target="{{ $beritas->count() }}">0</div>
                 <div class="text-lg opacity-90">Berita Terkini</div>
             </div>
         </div>
@@ -170,7 +260,7 @@
         </div>
 
         <div class="text-center mt-12">
-            <a href="{{ route('ekstrakurikuler') }}" class="gradient-purple-yellow text-white font-bold py-3 px-8 rounded-full hover:shadow-lg transition duration-300">
+            <a href="{{ route('ekstrakurikuler') }}" class="gradient-purple-yellow text-white font-bold py-3 px-8 rounded-full hover:shadow-lg transform hover:scale-105 transition duration-300">
                 <i class="fas fa-arrow-right mr-2"></i> Lihat Semua Ekstrakurikuler
             </a>
         </div>
@@ -216,40 +306,73 @@
         </div>
 
         <div class="text-center mt-12">
-            <a href="{{ route('berita') }}" class="gradient-purple-yellow text-white font-bold py-3 px-8 rounded-full hover:shadow-lg transition duration-300">
+            <a href="{{ route('berita') }}" class="gradient-purple-yellow text-white font-bold py-3 px-8 rounded-full hover:shadow-lg transform hover:scale-105 transition duration-300">
                 <i class="fas fa-newspaper mr-2"></i> Lihat Semua Berita
             </a>
         </div>
     </div>
 </section>
 
-<!-- CTA Section -->
-<section class="py-20 gradient-purple-yellow text-white">
-    <div class="container mx-auto px-4 text-center">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl font-bold mb-6">Bergabunglah dengan Sistem Kami</h2>
-            <p class="text-xl mb-8 opacity-90">Nikmati kemudahan mengelola dan memantau kegiatan ekstrakurikuler dengan teknologi terdepan</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-                <div class="bg-white bg-opacity-20 backdrop-blur-lg rounded-xl p-6 hover:bg-opacity-30 transition duration-300">
-                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-user-shield text-purple-600 text-2xl"></i>
+<!-- Additional Features Section -->
+<section class="py-20 bg-gradient-to-br from-purple-100 to-yellow-100">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">Mengapa Memilih Kami?</h2>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">Keunggulan sistem ekstrakurikuler digital SMP 54 Surabaya</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8">
+                <div class="flex items-start space-x-4">
+                    <div class="w-12 h-12 gradient-purple-yellow rounded-full flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-mobile-alt text-white text-lg"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Untuk Administrator</h3>
-                    <p class="mb-4 opacity-90">Kelola semua aspek ekstrakurikuler dengan mudah dan efisien</p>
-                    <a href="{{ route('admin.login') }}" class="bg-white text-purple-600 font-bold py-2 px-6 rounded-full hover:bg-yellow-100 transition duration-300 inline-block">
-                        Login Admin
-                    </a>
+                    <div>
+                        <h3 class="font-bold text-xl mb-2 text-gray-800">Akses Mobile Friendly</h3>
+                        <p class="text-gray-600">Dapat diakses kapan saja dan dimana saja melalui smartphone atau tablet dengan tampilan yang responsif.</p>
+                    </div>
                 </div>
 
-                <div class="bg-white bg-opacity-20 backdrop-blur-lg rounded-xl p-6 hover:bg-opacity-30 transition duration-300">
-                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-user-graduate text-purple-600 text-2xl"></i>
+                <div class="flex items-start space-x-4">
+                    <div class="w-12 h-12 gradient-purple-yellow rounded-full flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-shield-alt text-white text-lg"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Untuk Siswa</h3>
-                    <p class="mb-4 opacity-90">Akses presensi dan informasi ekstrakurikuler dengan praktis</p>
-                    <a href="{{ route('murid.login') }}" class="bg-white text-purple-600 font-bold py-2 px-6 rounded-full hover:bg-yellow-100 transition duration-300 inline-block">
-                        Login Siswa
+                    <div>
+                        <h3 class="font-bold text-xl mb-2 text-gray-800">Keamanan Data Terjamin</h3>
+                        <p class="text-gray-600">Sistem keamanan berlapis untuk melindungi data siswa dan informasi sekolah dengan teknologi enkripsi terbaru.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-4">
+                    <div class="w-12 h-12 gradient-purple-yellow rounded-full flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-sync text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-xl mb-2 text-gray-800">Update Real-time</h3>
+                        <p class="text-gray-600">Informasi presensi, pengumuman, dan berita diupdate secara real-time untuk kemudahan monitoring.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-4">
+                    <div class="w-12 h-12 gradient-purple-yellow rounded-full flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-headset text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-xl mb-2 text-gray-800">Support 24/7</h3>
+                        <p class="text-gray-600">Tim support yang siap membantu mengatasi kendala teknis dan memberikan bantuan penggunaan sistem.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <div class="bg-white rounded-2xl shadow-2xl p-8 transform hover:scale-105 transition duration-300">
+                    <div class="w-32 h-32 gradient-purple-yellow rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-graduation-cap text-white text-5xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">SMP 54 Surabaya</h3>
+                    <p class="text-gray-600 mb-6">Memajukan pendidikan melalui teknologi digital yang inovatif dan berkelanjutan.</p>
+                    <a href="{{ route('tentang') }}" class="gradient-purple-yellow text-white font-bold py-3 px-6 rounded-full hover:shadow-lg transform hover:scale-105 transition duration-300">
+                        <i class="fas fa-info-circle mr-2"></i> Tentang Kami
                     </a>
                 </div>
             </div>
@@ -258,6 +381,51 @@
 </section>
 
 <style>
+/* Carousel Styles */
+.carousel-slide {
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+}
+
+.carousel-dot.active {
+    opacity: 1;
+    background-color: #F59E0B;
+    transform: scale(1.2);
+}
+
+/* Animation Styles */
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-up {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-delay {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    animation: fade-in 1s ease-out;
+}
+
+.animate-slide-up {
+    animation: slide-up 1s ease-out 0.3s both;
+}
+
+.animate-fade-in-delay {
+    animation: fade-in-delay 1s ease-out 0.6s both;
+}
+
+/* Line clamp utilities */
 .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -272,8 +440,100 @@
     overflow: hidden;
 }
 
+/* Smooth scrolling */
 html {
     scroll-behavior: smooth;
 }
+
+/* Counter animation */
+@keyframes countUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.counter {
+    animation: countUp 0.8s ease-out;
+}
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Carousel functionality
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.carousel-dot');
+    const totalSlides = slides.length;
+
+    function showSlide(index) {
+        // Remove active class from all slides and dots
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        // Add active class to current slide and dot
+        slides[index].classList.add('active');
+        dots[index].classList.add('active');
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        showSlide(currentSlide);
+    }
+
+    // Auto-slide every 5 seconds
+    setInterval(nextSlide, 5000);
+
+    // Navigation controls
+    document.querySelector('.carousel-next').addEventListener('click', nextSlide);
+    document.querySelector('.carousel-prev').addEventListener('click', prevSlide);
+
+    // Dot navigation
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            currentSlide = index;
+            showSlide(currentSlide);
+        });
+    });
+
+    // Counter animation for statistics
+    function animateCounters() {
+        const counters = document.querySelectorAll('.counter');
+        
+        counters.forEach(counter => {
+            const target = parseInt(counter.dataset.target);
+            const increment = target / 100; // Adjust speed here
+            let current = 0;
+            
+            const updateCounter = () => {
+                if (current < target) {
+                    current += increment;
+                    counter.textContent = Math.floor(current);
+                    setTimeout(updateCounter, 20);
+                } else {
+                    counter.textContent = target;
+                }
+            };
+            
+            // Trigger animation when element is in viewport
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        updateCounter();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            observer.observe(counter);
+        });
+    }
+
+    // Initialize counter animation
+    animateCounters();
+});
+</script>
 @endsection
