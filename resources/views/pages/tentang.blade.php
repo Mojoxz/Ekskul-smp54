@@ -6,7 +6,7 @@
 <!-- Hero Section -->
 <section class="relative py-20 gradient-purple-yellow text-white">
     <div class="absolute inset-0 opacity-10">
-        <img src="{{ asset('images/about-bg.jpg') }}" alt="SMP 54 Surabaya" class="w-full h-full object-cover">
+        <img src="{{ asset('images/padding_awal.jpeg') }}" alt="SMP 54 Surabaya" class="w-full h-full object-cover">
     </div>
     
     <div class="relative container mx-auto px-4 text-center">
@@ -45,7 +45,7 @@
                 </div>
                 <div class="text-center">
                     <div class="bg-gradient-to-br from-purple-100 to-yellow-100 rounded-2xl p-8">
-                        <img src="{{ asset('images/school-building.jpg') }}" alt="Gedung SMP 54 Surabaya" class="w-full rounded-lg shadow-lg">
+                        <img src="{{ asset('images/padding_awal.jpeg') }}" alt="Gedung SMP 54 Surabaya" class="w-full rounded-lg shadow-lg">
                     </div>
                 </div>
             </div>

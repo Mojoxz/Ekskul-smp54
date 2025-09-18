@@ -330,12 +330,21 @@ class AdminController extends Controller
 
     public function exportPresensi(Request $request)
     {
-        $request->validate([
-            'tanggal_mulai' => 'required|date',
-            'tanggal_selesai' => 'required|date|after_or_equal:tanggal_mulai',
-        ]);
+    $request->validate([
+        'tanggal_mulai' => 'required|date',
+        'tanggal_selesai' => 'required|date|after_or_equal:tanggal_mulai',
+    ]);
 
-        return Excel::download(new PresensiExport($request->tanggal_mulai, $request->tanggal_selesai, $request->ekskul_id), 'rekap-presensi.xlsx');
+    $fileName = 'rekap-presensi-' . $request->tanggal_mulai . '-sampai-' . $request->tanggal_selesai . '.xlsx';
+    
+    return Excel::download(
+        new PresensiExport(
+            $request->tanggal_mulai, 
+            $request->tanggal_selesai, 
+            $request->ekskul_id
+        ), 
+        $fileName
+    );
     }
 
     // ============ SETTINGS MANAGEMENT ============

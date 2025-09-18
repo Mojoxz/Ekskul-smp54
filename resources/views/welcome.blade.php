@@ -11,7 +11,7 @@
     
     <!-- Background Image Container -->
     <div class="absolute inset-0 z-0">
-        <img src="{{ asset('images/hero-bg.jpg') }}" alt="" class="w-full h-full object-cover opacity-20">
+        <img src="{{ asset('images/padding_awal.jpeg') }}" alt="" class="w-full h-full object-cover opacity-20">
     </div>
     
     <div class="relative z-10 container mx-auto px-4 py-20">
@@ -114,7 +114,7 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            @foreach($ekskuls->take(8) as $ekskul)
+            @foreach($ekskuls->take(4) as $ekskul)
             <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl hover:scale-105 transition duration-300">
                 <div class="h-32 gradient-purple-yellow flex items-center justify-center">
                     <i class="fas fa-star text-white text-3xl"></i>
