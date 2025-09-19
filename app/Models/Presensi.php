@@ -43,4 +43,4 @@ class Presensi extends Model
         }
         return null;
     }
-}
+}   

@@ -366,8 +366,10 @@
 
             <div class="text-center">
                 <div class="bg-white rounded-2xl shadow-2xl p-8 transform hover:scale-105 transition duration-300">
-                    <div class="w-32 h-32 gradient-purple-yellow rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-graduation-cap text-white text-5xl"></i>
+                    <div class="w-32 h-32 gradient-purple-yellow rounded-full flex items-center justify-center mx-auto mb-6 ">
+                        <img src="{{ asset('logo.png') }}" 
+                            alt="Logo Ekskul" 
+                            class="w-200 h-200">
                     </div>
                     <h3 class="text-2xl font-bold text-gray-800 mb-4">SMP 54 Surabaya</h3>
                     <p class="text-gray-600 mb-6">Memajukan pendidikan melalui teknologi digital yang inovatif dan berkelanjutan.</p>
